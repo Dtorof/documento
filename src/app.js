@@ -10,7 +10,9 @@ import {documentTypeRouter} from './routes/documentType.route.js';
 import {departmentRouter} from './routes/department.route.js';
 import {usertypeRouter} from './routes/userTypes.route.js';
 import {digitalDocumentsRouter} from './routes/digitalDocument.routes.js'
-
+import {physicalDocumentsRouter} from './routes/physicalDocument.route.js'
+import {ticketsRouter} from './routes/tikcket.route.js'
+ticketsRouter
 const app = express();
 
 app.use(cors());
@@ -29,5 +31,7 @@ app.use(documentTypeRouter)
 app.use(departmentRouter)
 app.use(usertypeRouter)
 app.use(digitalDocumentsRouter)
+app.use(physicalDocumentsRouter)
+app.use(ticketsRouter)
 
 export default app;
