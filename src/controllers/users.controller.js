@@ -1,6 +1,5 @@
 import { User } from '../models/users.model.js';
 import {DocumentType} from '../models/documentType.model.js'
-import {Status} from '../models/status.model.js'
 import {UserType} from '../models/userType.model.js'
 import {Department} from '../models/department.model.js'
 
@@ -9,7 +8,6 @@ export const getUsers = async (req, res) => {
     const userList = await User.findAll({
       include: [
         { model: DocumentType, as: 'userDocumentType' },
-        { model: Status, as: 'userStatus' },
         { model: UserType, as: 'userUserType' },
         { model: Department, as: 'userDepartment' }
       ]
@@ -30,7 +28,6 @@ export const getUserById = async (req, res) => {
       },
       include: [
         { model: DocumentType, as: 'userDocumentType' },
-        { model: Status, as: 'userStatus' },
         { model: UserType, as: 'userUserType' },
         { model: Department, as: 'userDepartment' }
       ]
@@ -56,7 +53,6 @@ export const createUser = async (req, res) => {
       dateOfBirth,
       gender,
       documentType,
-      status,
       documentNumber,
       password,
       userName,
@@ -72,7 +68,6 @@ export const createUser = async (req, res) => {
       !dateOfBirth ||
       !gender ||
       !documentType ||
-      !status ||
       !documentNumber ||
       !password ||
       !userName ||
@@ -90,7 +85,6 @@ export const createUser = async (req, res) => {
       dateOfBirth,
       gender,
       documentType,
-      status,
       documentNumber,
       password,
       userName,
@@ -136,7 +130,6 @@ export const editUser = async (req, res) => {
       dateOfBirth,
       gender,
       documentType,
-      status,
       documentNumber,
       password,
       userName,
@@ -156,7 +149,6 @@ export const editUser = async (req, res) => {
     user.dateOfBirth = dateOfBirth;
     user.gender = gender;
     user.documentType = documentType;
-    user.status = status;
     user.documentNumber = documentNumber;
     user.password = password;
     user.userName = userName;

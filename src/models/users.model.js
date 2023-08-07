@@ -19,18 +19,17 @@ export const User = db.define('user', {
   documentType: { type: INTEGER, allowNull: false },
   userType: { type: INTEGER, allowNull: false },
   department: { type: INTEGER, allowNull: false },
-  status: { type: INTEGER, allowNull: false },
   documentNumber: { type: STRING, allowNull: false },
   password: { type: STRING, allowNull: false },
   userName: { type: STRING, allowNull:false }
 });
-User.belongsTo(Status, { foreignKey: 'status', as: 'userStatus' });
+
 User.belongsTo(DocumentType, { foreignKey: 'documentType', as: 'userDocumentType' });
 User.belongsTo(UserType, { foreignKey: 'userType', as: 'userUserType' });
 User.belongsTo(Department, { foreignKey: 'department', as: 'userDepartment' });
 
 // Inverse relationships
-Status.hasMany(User, { foreignKey: 'status', as: 'users' });
+
 DocumentType.hasMany(User, { foreignKey: 'documentType', as: 'users' });
 UserType.hasMany(User, { foreignKey: 'userType', as: 'users' });
 Department.hasMany(User, { foreignKey: 'department', as: 'users' });

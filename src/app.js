@@ -8,7 +8,8 @@ import { loginRouter } from './routes/auth.route.js';
 import { statusRouter } from './routes/status.route.js';
 import {documentTypeRouter} from './routes/documentType.route.js';
 import {departmentRouter} from './routes/department.route.js';
-import {usertypeRouter} from './routes/userTypes.route.js'
+import {usertypeRouter} from './routes/userTypes.route.js';
+import {digitalDocumentsRouter} from './routes/digitalDocument.routes.js'
 
 const app = express();
 
@@ -27,5 +28,6 @@ app.use(statusRouter)
 app.use(documentTypeRouter)
 app.use(departmentRouter)
 app.use(usertypeRouter)
+app.use(digitalDocumentsRouter)
 
 export default app;
