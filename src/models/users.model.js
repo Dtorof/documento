@@ -26,11 +26,13 @@ export const User = db.define('user', {
 });
 User.belongsTo(Status, { foreignKey: 'status', as: 'userStatus' });
 User.belongsTo(DocumentType, { foreignKey: 'documentType', as: 'userDocumentType' });
-
 User.belongsTo(UserType, { foreignKey: 'userType', as: 'userUserType' });
 User.belongsTo(Department, { foreignKey: 'department', as: 'userDepartment' });
 
-// Relaciones inversas
+// Inverse relationships
+Status.hasMany(User, { foreignKey: 'status', as: 'users' });
+DocumentType.hasMany(User, { foreignKey: 'documentType', as: 'users' });
 UserType.hasMany(User, { foreignKey: 'userType', as: 'users' });
 Department.hasMany(User, { foreignKey: 'department', as: 'users' });
+
 export default User;

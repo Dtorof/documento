@@ -1,8 +1,19 @@
 import { User } from '../models/users.model.js';
+import {DocumentType} from '../models/documentType.model.js'
+import {Status} from '../models/status.model.js'
+import {UserType} from '../models/userType.model.js'
+import {Department} from '../models/department.model.js'
 
 export const getUsers = async (req, res) => {
   try {
-    const userList = await User.findAll();
+    const userList = await User.findAll({
+      include: [
+        { model: DocumentType, as: 'userDocumentType' },
+        { model: Status, as: 'userStatus' },
+        { model: UserType, as: 'userUserType' },
+        { model: Department, as: 'userDepartment' }
+      ]
+    });
     res.json(userList);
   } catch (err) {
     console.log(err);
