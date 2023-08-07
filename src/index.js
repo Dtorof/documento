@@ -10,7 +10,7 @@ async function dbConnection()  {
         await db.sync({force:false})
         console.log('Connection has been established successfully.')
         app.listen(PORT) 
-        console.log(`Running on http://localhost:7000`)
+        console.log(`Running on ` + PORT)
     } catch (error) {
         console.error('Unable to connect to the database:', error)
       }

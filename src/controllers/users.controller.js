@@ -2,21 +2,13 @@ import { User } from '../models/users.model.js';
 
 export const getUsers = async (req, res) => {
   try {
-    const userList = await User.findAll({
-      include: [
-        { model: Status, as: 'userStatus' },
-        { model: DocumentType, as: 'userDocumentType' },
-        { model: UserType, as: 'userUserType' },
-        { model: Department, as: 'userDepartment' }
-      ]
-    });
+    const userList = await User.findAll();
     res.json(userList);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
-
 
 export const getUserById = async (req, res) => {
   const { id } = req.params;
@@ -25,12 +17,6 @@ export const getUserById = async (req, res) => {
       where: {
         id,
       },
-      include: [
-        { model: Status, as: 'userStatus' },
-        { model: DocumentType, as: 'userDocumentType' },
-        { model: UserType, as: 'userUserType' },
-        { model: Department, as: 'userDepartment' }
-      ]
     });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
