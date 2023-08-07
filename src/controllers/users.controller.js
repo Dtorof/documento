@@ -42,6 +42,8 @@ export const createUser = async (req, res) => {
       documentNumber,
       password,
       userName,
+      userType,  // New field
+      department  // New field
     } = req.body;
 
     if (
@@ -55,7 +57,9 @@ export const createUser = async (req, res) => {
       !status ||
       !documentNumber ||
       !password ||
-      !userName
+      !userName ||
+      !userType ||  // Check for new field
+      !department   // Check for new field
     ) {
       return res.status(400).json({ error: 'One or more fields are empty' });
     }
@@ -72,6 +76,8 @@ export const createUser = async (req, res) => {
       documentNumber,
       password,
       userName,
+      userType,  // Add new field to user creation
+      department   // Add new field to user creation
     });
 
     res.status(200).json({ message: 'User was created successfully', newUser });
@@ -80,6 +86,7 @@ export const createUser = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
 
 export const deleteUser = async (req, res) => {
   const { id } = req.params;
@@ -115,6 +122,8 @@ export const editUser = async (req, res) => {
       documentNumber,
       password,
       userName,
+      userType,  // New field
+      department   // New field
     } = req.body;
 
     const user = await User.findByPk(id);
@@ -133,6 +142,8 @@ export const editUser = async (req, res) => {
     user.documentNumber = documentNumber;
     user.password = password;
     user.userName = userName;
+    user.userType = userType;  // Update new field
+    user.department = department;   // Update new field
 
     await user.save();
 

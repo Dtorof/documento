@@ -17,6 +17,8 @@ export const User = db.define('user', {
   updatedAt: { type: DATE, allowNull: false },
   gender: { type: INTEGER, allowNull: false },
   documentType: { type: INTEGER, allowNull: false },
+  userType: { type: INTEGER, allowNull: false },
+  department: { type: INTEGER, allowNull: false },
   status: { type: INTEGER, allowNull: false },
   documentNumber: { type: STRING, allowNull: false },
   password: { type: STRING, allowNull: false },
