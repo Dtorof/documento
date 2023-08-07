@@ -28,6 +28,12 @@ export const getUserById = async (req, res) => {
       where: {
         id,
       },
+      include: [
+        { model: DocumentType, as: 'userDocumentType' },
+        { model: Status, as: 'userStatus' },
+        { model: UserType, as: 'userUserType' },
+        { model: Department, as: 'userDepartment' }
+      ]
     });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -38,6 +44,7 @@ export const getUserById = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
 
 export const createUser = async (req, res) => {
   try {
