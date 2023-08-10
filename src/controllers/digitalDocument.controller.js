@@ -42,12 +42,15 @@ export const getDocumentById = async (req, res) => {
 // Create a new digital document
 export const createDocument = async (req, res) => {
   try {
-    const newDocument = await DigitalDocument.create(req.body);
+    const { originalname: name, buffer: file } = req.file; // This is how you get file from the request
+    const { descrip, idUser, idStatus } = req.body;
+    const newDocument = await DigitalDocument.create({ name, descrip, file, idUser, idStatus });
     res.status(201).json(newDocument);
   } catch (error) {
     res.status(500).json({ message: "Error creating the document", error });
   }
 };
+
 
 // Update a digital document by ID
 export const updateDocument = async (req, res) => {
